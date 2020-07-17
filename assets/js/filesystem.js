@@ -1,4 +1,5 @@
-$(document).ready(function(){
+$(document).ready(function()
+{
  
       load_folder_list();
       
@@ -79,4 +80,34 @@ $(document).ready(function(){
       }
       });
       
+});
+
+$(document).on("click",".link-02",function (e) {
+      e.preventDefault();
+      var action = "fetchByName";
+      let fileName = $(this).data('id');
+      $.ajax({
+            url:"files/action.php",
+            method:"POST",
+            data:{action:action,fileName: fileName},
+            success:function(data)
+            {
+                  $('#directories').html(data);
+                  feather.replace();
+            }
+      });
+});$(document).on("click","#back",function (e) {
+      e.preventDefault();
+      var action = "goBack";
+      let fileName = $(this).data('id');
+      $.ajax({
+            url:"files/action.php",
+            method:"POST",
+            data:{action:action,fileName: fileName},
+            success:function(data)
+            {
+                  $('#directories').html(data);
+                  feather.replace();
+            }
+      });
 });
